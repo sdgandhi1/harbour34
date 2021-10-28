@@ -215,7 +215,7 @@ CREATE CLASS TBrowse
    METHOD rightVisible()                        // indicates position of rightmost unfrozen column in display
 
    METHOD hilite()                              // highlights the current cell
-   METHOD deHilite()                            // dehighlights the current cell
+   METHOD deHilite()                            // de-highlights the current cell
    METHOD refreshAll()                          // causes all data to be recalculated during the next stabilize
    METHOD refreshCurrent()                      // causes the current row to be refilled and repainted on next stabilize
    METHOD forceStable()                         // performs a full stabilization
@@ -299,16 +299,6 @@ CREATE CLASS TBrowse
 #endif
 
    ENDCLASS
-
-FUNCTION TBrowseDB( nTop, nLeft, nBottom, nRight )
-
-   LOCAL oBrowse := TBrowseNew( nTop, nLeft, nBottom, nRight )
-
-   oBrowse:SkipBlock     := {| nRecs | __dbSkipper( nRecs ) }
-   oBrowse:GoTopBlock    := {|| dbGoTop() }
-   oBrowse:GoBottomBlock := {|| dbGoBottom() }
-
-   RETURN oBrowse
 
 FUNCTION TBrowseNew( nTop, nLeft, nBottom, nRight )
 
@@ -526,14 +516,14 @@ METHOD dispRow( nRow ) CLASS TBrowse
       ::aDispStatus[ nRow ] := .F.
 
       DispEnd()
-      FOR EACH aCol IN ::aColData
-         IF aCol[ _TBCI_COLPOS ] != NIL
-            IF aCol[ _TBCI_IMAGE ] != NIL
-               nColPos := aCol[ _TBCI_COLPOS ] + aCol[ _TBCI_SEPWIDTH ] + aCol[ _TBCI_CELLPOS ]
-               wvt_DrawImage( nRowPos, nColPos, nRowPos, nColPos + 2, Eval( aCol[ _TBCI_IMAGE ] ) )
-            ENDIF
-         ENDIF
-      NEXT
+      //FOR EACH aCol IN ::aColData
+      //   IF aCol[ _TBCI_COLPOS ] != NIL
+      //      IF aCol[ _TBCI_IMAGE ] != NIL
+      //         nColPos := aCol[ _TBCI_COLPOS ] + aCol[ _TBCI_SEPWIDTH ] + aCol[ _TBCI_CELLPOS ]
+      //         wvt_DrawImage( nRowPos, nColPos, nRowPos, nColPos + 2, Eval( aCol[ _TBCI_IMAGE ] ) )
+      //      ENDIF
+      //   ENDIF
+      //NEXT
    ENDIF
 
    RETURN SELF
@@ -661,13 +651,13 @@ METHOD readRecord( nRow ) CLASS TBrowse
             ELSE
                cValue := Space( aCol[ _TBCI_CELLWIDTH ] )
             ENDIF
-            aCol[ _TBCI_IMAGE ] := oCol:Cargo
+            //aCol[ _TBCI_IMAGE ] := oCol:Cargo
          NEXT
       ELSE
          FOR EACH aCol, cValue, aColor IN ::aColData, ::aCellValues[ nRow ], ::aCellColors[ nRow ]
             aColor := { aCol[ _TBCI_DEFCOLOR ][ 1 ], aCol[ _TBCI_DEFCOLOR ][ 2 ] }
             cValue := Space( aCol[ _TBCI_CELLWIDTH ] )
-            aCol[ _TBCI_IMAGE ] := NIL
+            //aCol[ _TBCI_IMAGE ] := NIL
          NEXT
       ENDIF
 

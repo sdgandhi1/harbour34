@@ -222,7 +222,7 @@ METHOD WvgProgressBar:SetValue( nValue, nRangeMin, nRangeMax, nSpeed )
 
    RETURN ::sendMessage( PBM_GETPOS, 0, 0 )
 
-METHOD PROCEDURE WvgProgressBar:SetCOlorBarFG( nColor )
+METHOD PROCEDURE WvgProgressBar:SetColorBarFG( nColor )
 
    IF HB_ISNUMERIC( nColor )
       ::sendMessage( PBM_SETBARCOLOR, 0, nColor )
