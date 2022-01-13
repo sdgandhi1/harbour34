@@ -140,7 +140,7 @@ METHOD WvgScrollBar:handleEvent( nMessage, aNM )
 
    CASE nMessage == HB_GTE_CTLCOLOR
       IF ! Empty( ::hBrushBG )
-         wapi_SetBkMode( aNM[ 1 ], WIN_TRANSPARENT )
+         wapi_SetBkMode( ::hWnd, WIN_TRANSPARENT ) // changed from aNM[ 1 ] to ::hWnd
          RETURN ::hBrushBG
       ENDIF
 
