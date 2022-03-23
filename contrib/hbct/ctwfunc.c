@@ -157,7 +157,7 @@ HB_FUNC( WBOARD )
                                    HB_ISNUM( 4 ) ? hb_parni( 4 ) : hb_gtMaxCol() ) );
 }
 
-HB_FUNC( WOPEN )
+HB_FUNC( HBCT_WOPEN )
 {
    int iColor;
 
@@ -169,7 +169,7 @@ HB_FUNC( WOPEN )
                                  hb_parldef( 7, HB_TRUE ) ) ); /* HB_EXTENSION */
 }
 
-HB_FUNC( WCLOSE )
+HB_FUNC( HBCT_WCLOSE )
 {
    /* 1st parameter (window handle) is Harbour extension */
    hb_retni( hb_ctwCloseWindow( HB_ISNUM( 1 ) ? hb_parni( 1 ) : /* HB_EXTENSION */
